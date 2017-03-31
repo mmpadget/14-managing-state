@@ -11,5 +11,6 @@ page('/author', '/');
 page('/author/:authorName', articleController.loadByAuthor, articleController.index);
 page('/category/:categoryName', articleController.loadByCategory, articleController.index);
 
-// COMMENT: What is this function doing?
+// Comment: What is this function doing?
+// Invokes page.js.
 page();

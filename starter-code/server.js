@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// Comment: What is this function doing? Why do we need it? Where does it receive a request from?
+// When app.get catches the github route, it makes another request to github's API for the repos. We need it to protect the github token from clients or visitors. This function receives it's request from the AJAX call in the browser "repos.requestRepos" in "repo.js". This function (response) gets sent back to the browser.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -34,8 +34,8 @@ app.get('/', (request, response) => response.sendFile('index.html', {root: '.'})
 app.get('/new', (request, response) => response.sendFile('new.html', {root: '.'}));
 app.get('/github/*', proxyGitHub);
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// Comment: What is this route doing? Where does it receive a request from?
+// Selects authors and articles tables and joins them. Then "where" filters to show you only the one that's choosen or searched.
 app.get('/articles/find', (request, response) => {
   let sql = `SELECT * FROM articles
             INNER JOIN authors
@@ -47,8 +47,8 @@ app.get('/articles/find', (request, response) => {
   .catch(console.error);
 })
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// Comment: What is this route doing? Where does it receive a request from?
+// This route is getting a unique categories and showing the articles in that category.
 app.get('/categories', (request, response) => {
   client.query(`SELECT DISTINCT category FROM articles;`)
   .then(result => response.send(result.rows))
@@ -91,8 +91,8 @@ app.post('/articles', (request, response) => {
   .catch(console.error);
 });
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// Comment: What is this route doing? Where does it receive a request from?
+// This route is updating an article by id. In put request it will be a specific id. Attached to constructor, which is the method it's coming from.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors

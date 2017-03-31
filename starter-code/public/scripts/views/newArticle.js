@@ -1,7 +1,8 @@
 (function() {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function initializes the form so you can add a new article. Shows you what the article is going to look like. When you click on the JSON, you can copy it. See line 31; when any input field loses or gains focus, the preview text updates.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();

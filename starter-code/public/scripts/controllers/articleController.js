@@ -3,17 +3,19 @@
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // When "page('/about', aboutController.index);" is called in "routes.js". If we pass in parameter ctx, it passes ctx.article when it calls article view. Initializing the article view. ctx allows us to pass different arrays and objects.
   articleController.index = (ctx) => articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
   articleController.loadById = (ctx, next) => {
     let articleData = article => {
-      ctx.articles = article;
+      ctx.articles = article; // This is holding all of our articles.
       next();
     };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // When this function is called it send a get request that is intercepted by routes.js "page('/article/:article_id'" Before it returns, it calls "articleController.loadById" and  "articleController.index".
     Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 

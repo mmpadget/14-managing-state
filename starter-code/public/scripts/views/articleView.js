@@ -3,7 +3,8 @@
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Compile the handlebar's library. Helps in routing all the articles to the page. Makes the template. Returning template(article) is necessary to get the template to work.
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
