@@ -18,13 +18,15 @@
   //   return template(this);
   // };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Takes rows as parameter, it sorts them, and maps to a new array saved in "article.all" array.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Articles gets all the data from the database in server.js in "app.get('/articles'..." Once articles are all loaded, loadAll sorts the data by published on date (above).
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -59,7 +61,8 @@
                       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Goes through all the authors, then for each unique author, returns an object littoral with a name and numwords property.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -80,7 +83,8 @@
   };
 
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?Article.truncateTable = callback => {
+    // Comment: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?Article.truncateTable = callback => {
+    // AJAX request for the articles page to delete all the articles. (app.delete around line 133 on server.js)
     $.ajax({
       url: '/articles',
       method: 'DELETE',
